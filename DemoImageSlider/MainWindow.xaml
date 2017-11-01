@@ -1,0 +1,28 @@
+﻿<Window x:Class="DemoImageSlider.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoImageSlider"
+        xmlns:userControls="clr-namespace:DemoImageSlider.UserControls"
+        xmlns:ViewModels="clr-namespace:DemoImageSlider.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:AttachedProperties="clr-namespace:DemoImageSlider.Infrastructure.AttachedProperties"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" x:Name="wnd" Background="#FFE4EFFF" WindowState="Maximized">
+    <Window.DataContext>
+        <ViewModels:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8.5*" />
+            <RowDefinition Height="1.5*" />
+        </Grid.RowDefinitions>
+
+        <userControls:uscImageView Margin="4" NewImagePath="{Binding NewImagePath}" AttachedProperties:DropBehavior.PreviewDropCommand="{Binding UpdateCommand}" AllowDrop="True" >
+        </userControls:uscImageView>
+
+        <userControls:uscImageSlider ImagesList="{Binding Images}" Grid.Row="1" ItemClickCommand="{Binding UpdateCommand}" VisibleItemsCount="5">
+        </userControls:uscImageSlider>
+    </Grid>
+</Window>
